@@ -87,6 +87,7 @@ public class JavaApplication3 {
                 
                
             }
+            //if
             if (temp==3){
                 int h= x-1;
                 if (x<39 && 0<x) {
