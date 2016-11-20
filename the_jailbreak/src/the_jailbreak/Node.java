@@ -17,17 +17,27 @@ public class Node {
     int x;
     int y;
     ArrayList<Node> next=new ArrayList<Node>();
+    Node raiz;
     boolean salida;
 
     public Node() {
     }
-    
-    public Node(int x, int y, boolean salida) {
+
+    public Node(int x, int y, Node raiz, boolean salida) {
         this.x = x;
         this.y = y;
+        this.raiz = raiz;
         this.salida = salida;
     }
 
+    public Node getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(Node raiz) {
+        this.raiz = raiz;
+    }
+    
     public int getX() {
         return x;
     }
