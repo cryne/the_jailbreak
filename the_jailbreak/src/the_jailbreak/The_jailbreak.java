@@ -18,7 +18,7 @@ public class The_jailbreak {
      */
     public static void main(String[] args) {
         System.out.println("hola mundo");
-                String matriz[][] = new String[40][40];
+        String matriz[][] = new String[40][40];
 
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
@@ -27,19 +27,18 @@ public class The_jailbreak {
 
         }
         for (int i = 0; i < 40; i++) {
-            matriz[i][0]="▓";
-           // matriz[i][39]="▓";
-            matriz[0][i]="▓";
-           // matriz[39][i]="▓";
-            
-            
+            matriz[i][0] = "▓";
+            // matriz[i][39]="▓";
+            matriz[0][i] = "▓";
+            // matriz[39][i]="▓";
+
         }
         Random rnd = new Random();
 
-        int num = rnd.nextInt(19)+1;
+        int num = rnd.nextInt(19) + 1;
         matriz[num][0] = "E";
         int num2 = rnd.nextInt(39);
-      //  matriz[num2][39] = "S";
+        //  matriz[num2][39] = "S";
         System.out.println(num);
 
         /* for (int i = 0; i < 5; i++) {
@@ -51,7 +50,7 @@ public class The_jailbreak {
         }*/
         int x = 0;
         int y = 0;
-        
+
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
                 if (matriz[i][j].equals("E")) {
@@ -63,14 +62,14 @@ public class The_jailbreak {
         int cont = 1;
         for (int r = 0; r < 200; r++) {
             int temp = rnd.nextInt(3);
-          //  System.out.println(temp);
-            
-            if (cont==1) {
-              matriz[x][y+1]="-";
-              y=y+1;
-              cont++;
-            }else{
-            
+            //  System.out.println(temp);
+
+            if (cont == 1) {
+                matriz[x][y + 1] = "-";
+                y = y + 1;
+                cont++;
+            } else {
+
                 if (temp == 2) {
                     int h = y + 1;
                     if (y < 39 && 0 <= y) {
@@ -113,38 +112,63 @@ public class The_jailbreak {
                 }
 
             }
-                int numx = 0;
-                int numy = 0;
+            int numx = 0;
+            int numy = 0;
 
-        }//fin while
-        for (int i = 0; i < 1300; i++) {
-            num = rnd.nextInt(39);
+        }//fin for Genera el camino hasta el final 
         
-        num2 = rnd.nextInt(39);
-            if (matriz[num][num2].equals(" ")) {
-                matriz[num][num2]="-";
-            }
-            
-        }
+        int numx = 0;
+        int numy = 0;
+
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
                 if (matriz[i][j].equals(" ")) {
-                    matriz[i][j]="▓";
+                    matriz[i][j] = "▓";
                 }
-                
+
             }
         }
-         for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 40; i++) {
+
+        }
+        for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
                 if (matriz[i][j].equals("-")) {
-                    matriz[i][j]="░";
+                    matriz[i][j] = "░";
                 }
-                
+
             }
         }
-         
-         
-        
+
+        for (int i = 0; i < 80; i++) {
+            num = rnd.nextInt(35) + 2;
+            num2 = rnd.nextInt(35) + 2;
+            int numAleatorio = rnd.nextInt(2);
+
+            if (numAleatorio == 0) {
+                numx = num;
+                for (int j = 0; j < 25; j++) {
+
+                    if (numx < 38 && (matriz[numx][num2 + 1].equals("▓")) && (matriz[numx][num2 - 1].equals("▓"))) {
+                        matriz[numx][num2] = "░";
+                        numx++;
+                    }
+                }
+            }
+            if (numAleatorio == 1) {
+                numy = num2;
+                for (int j = 0; j < 25; j++) {
+
+                    if (numy < 38 && matriz[num + 1][numy].equals("▓") && matriz[num - 1][numy].equals("▓")) {
+                        matriz[num][numy] = "░";
+                        numy++;
+                    }
+                }
+
+            }
+
+        }// genera caminos aleatorios
+
         for (int i = 0; i < 40; i++) {
             System.out.println("");
             for (int j = 0; j < 40; j++) {
@@ -152,7 +176,7 @@ public class The_jailbreak {
             }
 
         }//fin for
-        
+
  
 
     }
