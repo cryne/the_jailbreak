@@ -179,7 +179,7 @@ public class main extends javax.swing.JFrame {
 
         int pre_x = 0;
         int pre_y = 0;
-        Arbol mapa = new Arbol();
+        
         boolean exit = true;
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
@@ -190,7 +190,7 @@ public class main extends javax.swing.JFrame {
                 }
             }
         }
-        boolean recorrido[][] = new boolean[40][40];
+        
         for (int i = 0; i < 40; i++) {
             for (int j = 0; j < 40; j++) {
                 if (matriz[i][j] == "░" || matriz[i][j] == "S") {
@@ -340,14 +340,20 @@ public class main extends javax.swing.JFrame {
                     }
                 }
 
-            } else if (matriz[mapa.getFondo().getX()][mapa.getFondo().getY()] == "░") {
-                mapa.setFondo(mapa.getFondo().getRaiz());
-            } //if (matriz[pre_x][pre_y+1].equals("S")&&recorrido[pre_x][pre_y+1]==false) {
-            //exit=false;
-            //}
+            } else {
+                if (matriz[mapa.getFondo().getX()][mapa.getFondo().getY()] == "░") {
+                    mapa.setFondo(mapa.getFondo().getRaiz());
+                }
+                if (matriz[pre_x][pre_y+1].equals("S")&&recorrido[pre_x][pre_y+1]==false) {
+                    mapa.getFondo().setSalida(true);
+                }
+            }
             contador++;
-            if (contador == 35) {
-                exit = false;
+            //if (contador==35) {
+              //  exit=false;
+            // }
+            if(mapa.getFondo().isSalida()== true){
+                exit=false;
             }
         }
 
@@ -424,6 +430,7 @@ public class main extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -461,6 +468,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Solucion");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -469,29 +483,35 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)))
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3))
-                .addGap(387, 387, 387))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3))
+                        .addGap(283, 283, 283)
+                        .addComponent(jButton5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
@@ -619,7 +639,7 @@ public class main extends javax.swing.JFrame {
                 }
             }
         }
-        if (((x >= 0) && (x < 40)) && ((y >= 0) && (y < 40))) {
+        if (((x >= 0) && (x < 40)) && ((y > 0) && (y < 40))) {
             y--;
             if (matriz[x][y].equals("░")) {
                 matriz[x][y] = "☻";
@@ -688,6 +708,26 @@ public class main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        for (int i = 0; i < 40; i++) {
+            for (int j = 0; j < 40; j++) {
+                if(matriz[i][j]=="░"&&recorrido[i][j]==true){
+                    matriz[i][j]="▄";
+                }
+            }
+        }
+        String tempM="";
+        for (int i = 0; i < 40; i++) {
+                for (int j = 0; j < 40; j++) {
+                    tempM = tempM + matriz[i][j];
+                }
+                tempM = tempM + "\n";
+            }
+
+            jTextArea1.setText(tempM);
+    }//GEN-LAST:event_jButton5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -728,13 +768,13 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 String matriz[][] = new String[40][40];
+boolean recorrido[][] = new boolean[40][40];
+Arbol mapa = new Arbol();
 
-    public void arbol(String x[][], int i, int j, boolean up, boolean down, boolean right, boolean left) {
-
-    }
 }
