@@ -11,7 +11,8 @@ package the_jailbreak;
  */
 public class Arbol {
     Node heap;
-
+    Node fondo;
+    
     public Arbol() {
     }
 
@@ -27,9 +28,27 @@ public class Arbol {
         this.heap = heap;
     }
 
+    public Node getFondo() {
+        return fondo;
+    }
+
+    public void setFondo(Node fondo) {
+        this.fondo = fondo;
+    }
+
     @Override
     public String toString() {
-        return  "entrada"+heap.toString();
+        return "heap=" + heap ;
+    }
+    
+    public void agregar(Node nuevo){
+        if (heap == null){
+            heap=nuevo;
+            fondo=nuevo;
+        }else{
+            fondo.setLista(nuevo);
+            fondo=nuevo;
+        }
     }
     
 }

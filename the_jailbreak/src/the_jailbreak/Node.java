@@ -16,18 +16,27 @@ import java.util.ArrayList;
 public class Node {
     int x;
     int y;
-    ArrayList<Node> next=new ArrayList<Node>();
+    String direccion;
+    Node next;
     Node raiz;
+    Node lista;
     boolean salida;
 
     public Node() {
     }
 
-    public Node(int x, int y, Node raiz, boolean salida) {
+    public Node(int x, int y, boolean salida) {
         this.x = x;
         this.y = y;
-        this.raiz = raiz;
         this.salida = salida;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     public Node getRaiz() {
@@ -37,6 +46,23 @@ public class Node {
     public void setRaiz(Node raiz) {
         this.raiz = raiz;
     }
+
+    public Node getLista() {
+        return lista;
+    }
+
+    public void setLista(Node lista) {
+        this.lista = lista;
+    }
+    
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+    
     
     public int getX() {
         return x;
@@ -54,14 +80,6 @@ public class Node {
         this.y = y;
     }
 
-    public ArrayList<Node> getNext() {
-        return next;
-    }
-
-    public void setNext(ArrayList<Node> next) {
-        this.next = next;
-    }
-
     public boolean isSalida() {
         return salida;
     }
@@ -72,10 +90,10 @@ public class Node {
 
     @Override
     public String toString() {
-        if(salida==true){
-            return "("+x + "," + y+")salida";
+        if (next!=null) {
+            return "v"+next+"v"+direccion+" sigue "+lista;
         }
-        return "("+x + "," + y+")" ;
+        return direccion+" sigue "+lista;
     }
     
     
